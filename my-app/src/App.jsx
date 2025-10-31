@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Header from './components/header.jsx';
+import DataTable from './components/DataTable.jsx';
 
 function App() {
 const [coins, setCoins] = useState([]);
