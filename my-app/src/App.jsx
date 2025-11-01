@@ -5,6 +5,7 @@ import './App.css'
 import Header from './components/header.jsx';
 import DataTable from './components/DataTable.jsx';
 import FilterForm from './components/SearchForm.jsx';
+import DetailCard from './components/DetailCard.jsx';
 
 function App() {
 const [coins, setCoins] = useState([]);
@@ -80,27 +81,38 @@ const filteredAndSortedCoins = useMemo(() => {
 }, [coins, filters]);
 
 const handleCoinSelect = (coin) => {
-    setSelectedCoin(coin);
+  setSelectedCoin(coin);
 };
 
 const handleCloseDetail = () => {
-    setSelectedCoin(null);
-  };
+  setSelectedCoin(null);
+};
 
 //------------------------------------------------------App's return
-
 return (
     <div className="app-container">
       <Header/>
 
       <main className="main-container">
         <FilterForm onFilterChange={handleFilterChange} />
-        <DataTable
-          coins={filteredAndSortedCoins}
-          loading={loading}
-          error={error}
-          onCoinSelect={handleCoinSelect}
-        />
+        <div className="content-grid">
+
+          <div className={selectedCoin ? 'table-container-split' : 'table-container-full'}>
+            <DataTable
+              coins={filteredAndSortedCoins}
+              loading={loading}
+              error={error}
+              onCoinSelect={handleCoinSelect}
+            />
+          </div>
+
+          {selectedCoin && (
+            <aside className="detail-container">
+              <DetailCard coin={selectedCoin} onClose={handleCloseDetail}/>
+            </aside>
+          )}
+
+        </div>
       </main>
     </div>
   );
