@@ -95,8 +95,28 @@ return (
 
       <main className="main-container">
         <FilterForm onFilterChange={handleFilterChange} />
-        <div className="content-grid">
 
+        {/* Refresh data button*/}
+        <div className="refresh-button-container">
+          <button onClick={fetchData} disabled={loading} className="refresh-button">
+            {loading ? (
+              <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12,4a8,8,0,0,1,7.89,6.7A1.53,1.53,0,0,0,21.38,12h0a1.5,1.5,0,0,0,1.48-1.75,11,11,0,0,0-21.72,0A1.5,1.5,0,0,0,2.62,12h0a1.53,1.53,0,0,0,1.49-1.3A8,8,0,0,1,12,4Z">
+                      <animateTransform attributeName="transform" type="rotate" dur="0.75s" values="0 12 12;360 12 12" repeatCount="indefinite"/>
+                  </path>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
+                <path fill-rule="evenodd" d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138.75.75 0 0 0-1.449-.39Zm1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219Z" clip-rule="evenodd" />
+              </svg>
+
+            )}
+            {loading ? 'Me-refresh...' : 'Refresh Data'}
+          </button>
+        </div>
+        
+        {/*content-grid: DataTable & DataCard*/}
+        <div className="content-grid">
           <div className={selectedCoin ? 'table-container-split' : 'table-container-full'}>
             <DataTable
               coins={filteredAndSortedCoins}
