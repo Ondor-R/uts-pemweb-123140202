@@ -10,6 +10,7 @@ function App() {
 const [coins, setCoins] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(null);
+const [selectedCoin, setSelectedCoin] = useState(null);
 const [filters, setFilters] = useState({
   searchName: '',
   minPrice: 0,
@@ -22,6 +23,7 @@ const [filters, setFilters] = useState({
 const fetchData = useCallback(async () => {
   setLoading(true);
   setError(null);
+  setSelectedCoin(null);
 
   const api_url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=idr&order=market_cap_desc&per_page=10&page=1&sparkline=false';
 
@@ -77,6 +79,14 @@ const filteredAndSortedCoins = useMemo(() => {
   return processedCoins;
 }, [coins, filters]);
 
+const handleCoinSelect = (coin) => {
+    setSelectedCoin(coin);
+};
+
+const handleCloseDetail = () => {
+    setSelectedCoin(null);
+  };
+
 //------------------------------------------------------App's return
 
 return (
@@ -89,6 +99,7 @@ return (
           coins={filteredAndSortedCoins}
           loading={loading}
           error={error}
+          onCoinSelect={handleCoinSelect}
         />
       </main>
     </div>

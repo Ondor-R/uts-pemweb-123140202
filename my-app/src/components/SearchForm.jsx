@@ -37,6 +37,9 @@ const FilterForm = ({ onFilterChange }) => {
                     <label htmlFor="sortBy">Urutkan</label>
                     <select id="sortBy" value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
                         <option value="market_cap_desc">Market Cap (Tinggi)</option>
+                        <option value="market_cap_asc">Market Cap (Rendah)</option>
+                        <option value="price_desc">Harga (Tinggi)</option>
+                        <option value="price_asc">Harga (Rendah)</option>
                     </select>
                 </div>
 
