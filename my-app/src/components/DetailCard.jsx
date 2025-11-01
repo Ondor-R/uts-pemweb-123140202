@@ -45,7 +45,7 @@ const DetailCard = ({ coin, onClose }) => {
         setChartLoading(false);
       }
     };
-    
+
     fetchChartData();
   }, [coin]);
 
